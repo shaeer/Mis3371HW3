@@ -1,4 +1,29 @@
 
+/* Validation JS with live messages & dynamic titles */
+function setTitle(id, msg){ document.getElementById(id).setAttribute("title", msg); }
+
+/* ----- set titles once DOM ready ----- */
+document.addEventListener("DOMContentLoaded", ()=>{
+  const titles = {
+    firstname: "1-30 letters, apostrophes, or dashes only",
+    midinitial:"Optional. 1 letter only",
+    lastname: "1-30 letters, apostrophes, or dashes only",
+    dob: "Date must be in past 120 years and not in the future",
+    ssn: "9 digits formatted as ###-##-####",
+    address1:"2-30 chars. Letters, numbers, punctuation",
+    address2:"Optional. 2-30 chars",
+    city:"2-30 letters, apostrophes, dashes, spaces",
+    state:"Select a state",
+    zip:"5 digits only",
+    email:"Enter a valid email like name@domain.com",
+    userid:"5-20 chars. Letters/numbers/-/_ ; must start with a letter",
+    password:"≥8 chars with upper, lower, digit. Cannot equal User ID",
+    repassword:"Must match the password above"
+  };
+  for(const id in titles){ if(document.getElementById(id)) setTitle(id, titles[id]); }
+});
+/* include rest of validation code below (copy of formValidation_autovalidate.js) */
+
 /* === Robust Validation for Homework 3 === */
 /* Shows inline messages and disables submit until everything valid */
 
