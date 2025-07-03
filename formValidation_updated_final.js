@@ -54,6 +54,59 @@ function validateUserID() {
     return true;
 }
 
+function validatePasswords() {
+    const password = document.getElementById("password").value;
+    const repassword = document.getElementById("repassword").value;
+    const userid = document.getElementById("userid").value.toLowerCase();
+
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+    const hasDigit = /[0-9]/.test(password);
+    const validLength = password.length >= 8;
+    const notUserID = password.toLowerCase() !== userid;
+    const matches = password === repassword;
+
+    if (!validLength) {
+        alert("Password must be at least 8 characters long.");
+        return false;
+    }
+    if (!hasUpper || !hasLower || !hasDigit) {
+        alert("Password must include at least one uppercase letter, one lowercase letter, and one digit.");
+        return false;
+    }
+    if (!notUserID) {
+        alert("Password cannot be the same as your User ID.");
+        return false;
+    }
+    if (!matches) {
+        alert("Passwords do not match.");
+        return false;
+    }
+    return true;
+}
+
+function truncateZip(zipInputId) {
+    const zipInput = document.getElementById(zipInputId);
+    if (zipInput) {
+        const zipValue = zipInput.value.trim();
+        const zipMatch = zipValue.match(/^\d{5}/);
+        if (zipMatch) {
+            zipInput.value = zipMatch[0];
+            return zipMatch[0];
+        } else {
+            alert("Please enter a valid ZIP code (e.g., 77002 or 77002-1234)");
+            zipInput.focus();
+            return null;
+        }
+    }
+    return null;
+}
+
+function normalizeUserID() {
+    const uidField = document.getElementById("userid");
+    uidField.value = uidField.value.toLowerCase();
+}
+
 function validateAllFields() {
     const validations = [
         validateName('firstname'),
