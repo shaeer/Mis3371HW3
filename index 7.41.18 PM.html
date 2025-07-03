@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Saleem Medicine House Profile Setup</title>
+   <link rel="stylesheet" href="homework1.css">
+   <script src="formValidation.js" defer></script>
+   <script>
+       function formatDate() {
+           const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+           const today = new Date();
+           document.getElementById('date').textContent = `Today is: ${today.toLocaleDateString('en-US', options)}`;
+       }
+       window.onload = formatDate;
+
+       function reviewFormData() {
+           const getVal = id => document.getElementById(id)?.value || '';
+
+           const gender = [...document.getElementsByName("gender")].find(r => r.checked)?.value || '';
+           const pregnant = [...document.getElementsByName("pregnant")].find(r => r.checked)?.value || '';
+           const allergies = [...document.getElementsByName("allergies")].find(r => r.checked)?.value || '';
+           const smoker = [...document.getElementsByName("smoker")].find(r => r.checked)?.value || '';
+           const organDonor = [...document.getElementsByName("organdonor")].find(r => r.checked)?.value || '';
+           const health = getVal("health");
+
+           const output = `
+               <h3>Review Your Submitted Info</h3>
+               <p><strong>Name:</strong> ${getVal("firstname")} ${getVal("midinitial")} ${getVal("lastname")}</p>
+               <p><strong>Date of Birth:</strong> ${getVal("dob")}</p>
+               <p><strong>SSN:</strong> ${getVal("ssn")}</p>
+               <p><strong>Address:</strong> ${getVal("address1")} ${getVal("address2")}, ${getVal("city")}, ${getVal("state")} ${getVal("zip")}</p>
+               <p><strong>Email:</strong> ${getVal("email")}</p>
+               <p><strong>Symptoms:</strong> ${getVal("symptoms")}</p>
+               <p><strong>Gender:</strong> ${gender}</p>
+               <p><strong>Pregnant:</strong> ${pregnant}</p>
+               <p><strong>Allergies:</strong> ${allergies}</p>
+               <p><strong>Smoker:</strong> ${smoker}</p>
+               <p><strong>Organ Donor:</strong> ${organDonor}</p>
+               <p><strong>Health Rating:</strong> ${health}/10</p>
+               <p><strong>User ID:</strong> ${getVal("userid")}</p>
+               <p><strong>Password:</strong> ${getVal("password")}</p>
+           `;
+
+           document.getElementById("reviewBox").innerHTML = output;
+       }
+   </script>
+</head>
+<body>
+   <div id="header">
+       <table style="width: 100%;">
+           <tr>
+               <td style="vertical-align: top;">
+                   <img src="logo.png" width="300" height="200" alt="Saleem Medicine House logo"><br>
+                   <h1>Saleem Medicine House</h1>
+               </td>
+               <td style="text-align: right; vertical-align: bottom;">
+                   <p id="date">Today is: </p>
+               </td>
+           </tr>
+       </table>
+   </div>
+   <hr>
+   <div id="body">
+       <form action="Thankyou.html">
+           <table class="form-table">
+               <tr><th colspan="6">Set up a new profile</th></tr>
+               <tr>
+                   <td>First Name:</td>
+                   <td><input type="text" id="firstname" pattern="[A-Za-z\'\-]{1,30}" title="Enter 1–30 letters, apostrophes or dashes only"></td>
+                   <td>Middle Initial:</td>
+                   <td><input type="text" id="midinitial" size="1" maxlength="1" pattern="[A-Za-z]{1}" title="Enter 1 letter only"></td>
+                   <td>Last Name:</td>
+                   <td><input type="text" id="lastname" pattern="[A-Za-z0-9\'\-]{1,30}" title="Enter 1–30 letters, numbers 2–5, apostrophes or dashes"></td>
+               </tr>
+               <tr>
+                   <td>Date of Birth (MM/DD/YYYY):</td>
+                   <td><input type="date" id="dob" min="1905-07-20" max="2025-06-20" title="Enter DOB between 1905-07-20 and 2025-06-20"></td>
+               </tr>
+               <tr>
+                   <td>Social Security Number:</td>
+                   <td><input type="password" id="ssn"></td>
+               </tr>
+               <tr>
+                   <td>Address Line 1:</td>
+                   <td><input type="text" id="address1"></td>
+               </tr>
+               <tr>
+                   <td>Address Line 2:</td>
+                   <td><input type="text" id="address2"></td>
+               </tr>
+               <tr>
+                   <td>City:</td>
+                   <td><input type="text" id="city"></td>
+                   <td>State:</td>
+                   <td>
+                       <select id="state" name="state" required>
+                           <option value="">Select State</option>
+                           <option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option>
+                           <option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option>
+                           <option value="CT">CT</option><option value="DE">DE</option><option value="FL">FL</option>
+                           <option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option>
+                           <option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option>
+                           <option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option>
+                           <option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option>
+                           <option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option>
+                           <option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option>
+                           <option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option>
+                           <option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option>
+                           <option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option>
+                           <option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option>
+                           <option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option>
+                           <option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option>
+                           <option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option>
+                           <option value="WI">WI</option><option value="WY">WY</option><option value="DC">DC</option>
+                           <option value="PR">PR</option>
+                       </select>
+                   </td>
+                   <td>Zip Code:</td>
+                   <td><input type="text" id="zip" placeholder="12345"></td>
+               </tr>
+               
+<tr>
+    <td>Phone Number:</td>
+    <td><input type="tel" id="phone" pattern="\d{3}-\d{3}-\d{4}" title="Format: 123-456-7890" required></td>
+</tr>
+
+<tr>
+                   <td>Email Address:</td>
+                   <td><input type="email" id="email"></td>
+               </tr>
+               <tr>
+                   <td>Describe Your Current Symptoms:</td>
+                   <td colspan="5"><textarea id="symptoms" rows="3"></textarea></td>
+               </tr>
+               
+<tr>
+    <td>Medical History:</td>
+    <td colspan="5">
+        <input type="checkbox" name="illness" value="Chickenpox"> Chickenpox
+        <input type="checkbox" name="illness" value="Measles"> Measles
+        <input type="checkbox" name="illness" value="Mumps"> Mumps
+        <input type="checkbox" name="illness" value="Covid-19"> Covid-19
+        <input type="checkbox" name="illness" value="Heart Disease"> Heart Disease
+    </td>
+</tr>
+
+<tr>
+                   <td>Gender:</td>
+                   <td><input type="radio" name="gender" value="Male"> Male <input type="radio" name="gender" value="Female"> Female</td>
+               </tr>
+               <tr>
+                   <td>Pregnant:</td>
+                   <td><input type="radio" name="pregnant" value="Yes"> Yes <input type="radio" name="pregnant" value="No"> No</td>
+               </tr>
+               <tr>
+                   <td>Allergies:</td>
+                   <td><input type="radio" name="allergies" value="Yes"> Yes <input type="radio" name="allergies" value="No"> No</td>
+               </tr>
+               <tr>
+                   <td>Rate Your Health (1-10):</td>
+                   <td>
+                       <input type="range" id="health" name="health" min="1" max="10" value="5" oninput="document.getElementById('healthValue').textContent = this.value">
+                       <span id="healthValue">5</span>
+                   </td>
+               </tr>
+               <tr>
+                   <td>Are you a smoker?</td>
+                   <td><input type="radio" name="smoker" value="Yes"> Yes <input type="radio" name="smoker" value="No"> No</td>
+               </tr>
+               <tr>
+                   <td>Are you an organ donor?</td>
+                   <td><input type="radio" name="organdonor" value="Yes"> Yes <input type="radio" name="organdonor" value="No"> No</td>
+               </tr>
+               <tr>
+                   <td>Preferred User ID:</td>
+                   <td><input type="text" id="userid" pattern="^[A-Za-z][A-Za-z0-9_-]{4,29}$" title="5–30 characters. Letters/numbers, no spaces. Must start with a letter."></td>
+                   <td>Password:</td>
+                   <td><input type="password" id="password"></td>
+                   <td>Re-enter Password:</td>
+                   <td><input type="password" id="repassword"></td>
+               </tr>
+               <tr>
+                   <td colspan="6">
+                       <button type="reset">Clear</button>
+                       <button type="button" onclick="reviewFormData()">Review</button>
+                       <button type="submit">Submit</button>
+                   </td>
+               </tr>
+           </table>
+       </form>
+       <div id="reviewBox" style="background:#fff3e0; padding:10px; margin-top:20px;"></div>
+   </div>
+   <hr>
+   <div id="footer">
+       <table>
+           <tr><td><button onclick="window.location.href='mailto:support@saleemmed.com'">Contact Us</button></td></tr>
+           <tr><td><address>Written by Shaeer Saleem<br>Visit Us: 7700 Bellaire Blvd, Suite 500, Houston, TX 77036</address></td></tr>
+       </table>
+   </div>
+</body>
+</html>
