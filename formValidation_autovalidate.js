@@ -129,6 +129,7 @@ function master(){
 
 /* Attach events */
 document.addEventListener("DOMContentLoaded", ()=>{
+  master();
   const map = {
     firstname:()=>validateName("firstname"),
     lastname:()=>validateName("lastname"),
